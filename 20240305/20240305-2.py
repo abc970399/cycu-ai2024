@@ -17,7 +17,8 @@ soup2 = BeautifulSoup(response2.content, "html.parser")
 # 找到表格元素
 tables1 = soup1.find_all("table")
 tables2 = soup2.find_all("table")
-tables = tables1 + tables2
+
+tables = tables1 + tables2[1:]
 
 
 # 將HTML格轉換為DataFrame
@@ -31,19 +32,16 @@ df = pd.concat(dfs)
 #印出 DataFrame
 print(df)
 
-df.to_csv("C:/Users/USER/Desktop/oil2.csv", index=False)
-
-
-df = df.iloc[:, :5]
+df.to_csv("C:/Users/USER/Desktop/oil.csv", index=False)
+df = df.iloc[1:, :6]
 
 #去除油價中沒有值的欄位
 df = df.dropna(subset=[df.columns[1]])
 
 #把第一欄的資料型態轉換成datetime
 df[df.columns[0]] = pd.to_datetime(df[df.columns[0]])
-# 將第二欄到第五欄的資料型態轉換成數值型態
-for i in range(1, 5):
-    df[df.columns[i]] = pd.to_numeric(df[df.columns[i]], errors='coerce')
+
+df = df.sort_values(by=df.columns[0])
 
 # 使用matplotlib繪製折線圖，X軸式日期、Y軸是油價
 from matplotlib import pyplot as plt
