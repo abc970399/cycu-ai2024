@@ -23,7 +23,7 @@ print(df1)
 print(df2)
 
 
-df2 = df2.iloc[:, :2]
+df2 = df2.iloc[:, :5]
 
 #去除油價中沒有值的欄位
 df2 = df2.dropna(subset=[df2.columns[1]])
@@ -40,7 +40,10 @@ from matplotlib.font_manager import FontProperties
 
 font = FontProperties(fname=r"c:\windows\fonts\simsun.ttc", size=14)  # 設定字體為系統的宋體
 
-plt.plot(df2[df2.columns[0]], df2[df2.columns[1]], label='95無鉛汽油')
+plt.plot(df2[df2.columns[0]], df2[df2.columns[1]], label='92無鉛汽油')
+plt.plot(df2[df2.columns[0]], df2[df2.columns[2]], label='95無鉛汽油')
+plt.plot(df2[df2.columns[0]], df2[df2.columns[3]], label='98無鉛汽油')
+plt.plot(df2[df2.columns[0]], df2[df2.columns[4]], label='超級柴油')
 plt.xlabel('日期', fontproperties=font)
 plt.ylabel('油價', fontproperties=font)
 plt.title('歷年油價曲線', fontproperties=font)
