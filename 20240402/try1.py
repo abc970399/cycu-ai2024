@@ -50,6 +50,9 @@ df_weather = pd.DataFrame(county_list)
 ##################################################
 #plot taiwan using matplotlib
 import matplotlib.pyplot as plt
+# 設定中文字型
+plt.rcParams['font.sans-serif'] = ['Microsoft JhengHei']
+plt.rcParams['axes.unicode_minus'] = False
 
 #merge df_taiwan and df_weather on df_taiwan.COUNTYNAME = df_weather.county 
 geo_taiwan = pd.merge(df_taiwan, df_weather, left_on='COUNTYNAME', right_on='county')
@@ -60,7 +63,7 @@ print (geo_taiwan)
 geo_taiwan.plot()
 plt.xlim(118,122)
 plt.ylim(21.5,25.5)
-
+plt.title('11272006 林意芹')
 #output countyname at centroid of each polygon
 for x, y, label in zip(geo_taiwan.geometry.centroid.x, geo_taiwan.geometry.centroid.y, geo_taiwan['min']):
     plt.text(x, y, label, fontsize=8, ha='center')
