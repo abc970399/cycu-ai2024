@@ -2,7 +2,7 @@ import pandas as pd
 import folium
 from folium.plugins import TimestampedGeoJson
 # 讀取CSV文件，並將其轉換為DataFrame
-df = pd.read_csv('C:\\Users\\User\\Desktop\\cycu_ai2024\\20240409\\地震活動彙整_638483048004417544.csv', encoding='big5', skiprows=1)
+df = pd.read_csv('D:\\File\\cycu_ai2024\\20240409\\地震活動彙整_638483048004417544.csv', encoding='big5', skiprows=1)
 
 # 將'地震時間'轉換為datetime格式並進行排序
 df['地震時間'] = pd.to_datetime(df['地震時間'], format="%Y/%m/%d %I:%M:%S %p", errors='coerce')
@@ -39,4 +39,4 @@ for index, row in df.iterrows():
 TimestampedGeoJson(locations, period='PT1H', add_last_point=True).add_to(m)
 
 # 將地圖保存為HTML，並將其保存到指定的路徑
-m.save('C:\\Users\\User\\Desktop\\cycu_ai2024\\20240409\\earthquake_locations7.html')
+m.save('D:\\File\\cycu_ai2024\\20240409\\earthquake_locations8.html')
